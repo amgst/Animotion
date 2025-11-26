@@ -27,7 +27,7 @@ ${animation.keyframes.split('\n').filter(Boolean).map(line => `          ${line.
         },
       },
       animation: {
-        '${animation.id}': '${animation.id} ${config.duration}s ${config.timingFunction} ${config.fillMode}',
+        '${animation.id}': '${animation.id} ${config.duration}s ${config.timingFunction} ${config.delay > 0 ? config.delay + 's' : '0s'} ${config.iterationCount} ${config.fillMode}',
       },
     },
   },
