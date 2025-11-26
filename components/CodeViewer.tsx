@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Copy, Check, Code2, FileJson, Download } from 'lucide-react';
+import { Copy, Check, FileJson, Download } from 'lucide-react';
 import { AnimationDef, AnimationConfig } from '../types';
 
 interface CodeViewerProps {
@@ -8,22 +8,12 @@ interface CodeViewerProps {
 }
 
 const CodeViewer: React.FC<CodeViewerProps> = ({ animation, config }) => {
-  const [activeTab, setActiveTab] = useState<'tailwind' | 'css'>('tailwind');
   const [copied, setCopied] = useState(false);
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  };
-
-  const getCssCode = () => {
-    const keyframes = `@keyframes ${animation.id} {${animation.keyframes}}`;
-    const classDef = `
-.animate-${animation.id} {
-  animation: ${animation.id} ${config.duration}s ${config.timingFunction} ${config.delay > 0 ? `${config.delay}s` : ''} ${config.iterationCount} ${config.fillMode};
-}`;
-    return `${keyframes}\n${classDef}`;
   };
 
   const getTailwindCode = () => {
@@ -44,11 +34,10 @@ ${animation.keyframes.split('\n').filter(Boolean).map(line => `          ${line.
 };`;
   };
 
-  const code = activeTab === 'tailwind' ? getTailwindCode() : getCssCode();
+  const code = getTailwindCode();
 
   const handleDownload = () => {
-    const extension = activeTab === 'tailwind' ? 'js' : 'css';
-    const filename = `${animation.id}.${extension}`;
+    const filename = `${animation.id}.js`;
     
     const blob = new Blob([code], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
@@ -64,25 +53,9 @@ ${animation.keyframes.split('\n').filter(Boolean).map(line => `          ${line.
   return (
     <div className="bg-[#1e1e1e] rounded-2xl border border-white/5 overflow-hidden flex flex-col h-full">
       <div className="flex items-center justify-between p-2 border-b border-white/5 bg-[#252526]">
-        <div className="flex gap-1">
-          <button
-            onClick={() => setActiveTab('tailwind')}
-            className={`
-              flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors
-              ${activeTab === 'tailwind' ? 'bg-primary/20 text-primary' : 'text-zinc-500 hover:text-zinc-300'}
-            `}
-          >
-            <FileJson size={14} /> Tailwind
-          </button>
-          <button
-            onClick={() => setActiveTab('css')}
-            className={`
-              flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors
-              ${activeTab === 'css' ? 'bg-primary/20 text-primary' : 'text-zinc-500 hover:text-zinc-300'}
-            `}
-          >
-            <Code2 size={14} /> CSS
-          </button>
+        <div className="flex items-center gap-2 px-3 py-1.5">
+          <FileJson size={14} className="text-primary" />
+          <span className="text-xs font-medium text-primary">Tailwind CSS Config</span>
         </div>
         
         <div className="flex gap-2">

@@ -73,17 +73,17 @@
    - Add more descriptive content on the homepage
    - Create individual pages for each animation category
 
-### Keywords Targeted
-- CSS animations
-- Animation library
-- Web animations
-- CSS keyframes
-- Animation generator
-- Free animations
-- React animations
+### Keywords Targeted (Tailwind CSS Focus)
+- Tailwind CSS animations
+- Tailwind animation library
 - Tailwind animations
-- Web design
-- UI animations
+- Tailwind keyframes
+- Tailwind animation generator
+- Free Tailwind animations
+- Tailwind config animations
+- Tailwind CSS keyframes
+- Tailwind animation builder
+- Tailwind CSS keyframes generator
 
 ## 🔍 Testing Your SEO
 

@@ -142,7 +142,7 @@ const App: React.FC = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <h2 className="text-3xl font-bold text-white tracking-tight">{selectedAnim.name}</h2>
-                  <p className="text-zinc-400 mt-1">Customize and export your animation.</p>
+                  <p className="text-zinc-400 mt-1">Customize and export your Tailwind CSS animation.</p>
                 </div>
               </div>
 
